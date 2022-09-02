@@ -30,7 +30,7 @@ const sessSettings = expressSession({
 });
 
 app.use(sessSettings);
-const PORT = process.env.PORT || 8000;
+const PORT = process.env.PORT || 5000;
 
 mongoose.connect(process.env.DB_URL, {
 	useNewUrlParser: true,
@@ -50,6 +50,8 @@ app.use("/api/package", require("./routes/travelPackageRoutes"));
 app.use("/api/vehicle", require("./routes/VehicleRoutes"));
 
 app.use("/api/vacancy", require("./routes/CareerRoutes"));
+
+app.use("/api/client", require("./routes/ClientRoutes"));
 
 app.listen(PORT, () => {
 	logger.info(`Server is running on PORT: ${PORT}`);
