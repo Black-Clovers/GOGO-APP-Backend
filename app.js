@@ -51,6 +51,8 @@ app.use("/api/vehicle", require("./routes/VehicleRoutes"));
 
 app.use("/api/vacancy", require("./routes/CareerRoutes"));
 
+app.use("/api/client", require("./routes/ClientRoutes"));
+
 app.listen(PORT, () => {
 	logger.info(`Server is running on PORT: ${PORT}`);
 });
