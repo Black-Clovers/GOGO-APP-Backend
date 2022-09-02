@@ -10,7 +10,7 @@ const {
 
 router.get("/all", getAllClients);
 router.post("/", addClient);
-router.put("/:id", updateClient);
+router.put("/", updateClient);
 router.delete("/:id", deleteClient);
 router.get("/:id", getClientByID);
 module.exports = router;
