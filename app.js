@@ -30,7 +30,7 @@ const sessSettings = expressSession({
 });
 
 app.use(sessSettings);
-const PORT = process.env.PORT || 8000;
+const PORT = process.env.PORT || 5000;
 
 mongoose.connect(process.env.DB_URL, {
 	useNewUrlParser: true,
