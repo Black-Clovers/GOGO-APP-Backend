@@ -48,6 +48,7 @@ app.get("/", (req, res) => {
 app.use("/api/package", require("./routes/travelPackageRoutes"));
 
 
+
 app.listen(PORT, () => {
   logger.info(`Server is running on PORT: ${PORT}`);
 });
