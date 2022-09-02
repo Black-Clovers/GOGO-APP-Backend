@@ -1,30 +1,21 @@
 const express = require("express");
 const router = express.Router();
-const { 
-    addvehicle,
-    getVehicle,
-    updateVehicle,
-    removerVehicle,
+const { addvehicle, getVehicle, updateVehicle, removerVehicle } = require("../controller/VehicleController");
 
- } = require("../controller/VehicleController");
+//addVehicle
 
- //addVehicle
+router.post("/", addvehicle);
 
- router.post("/",addvehicle);
+//getpackage
 
- //getpackage
+router.get("/all", getVehicle);
 
- router.get("/all",getVehicle);
+//@route PUT api/course/:id
+//@desc Update an course
+router.put("/:id", updateVehicle);
 
- 
- //@route PUT api/course/:id
- //@desc Update an course
- router.put("/:id",updateVehicle);
- 
- //@route delete api/course/:id
- //@desc Delete an course
- router.delete("/:id",removerVehicle);
+//@route delete api/course/:id
+//@desc Delete an course
+router.delete("/:id", removerVehicle);
 
-
-
- module.exports = router;
+module.exports = router;
