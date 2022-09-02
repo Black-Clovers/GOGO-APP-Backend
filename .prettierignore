@@ -1,5 +1,0 @@
-build
-dist/*
-.idea/*
-.vscode
-node_modules/*
