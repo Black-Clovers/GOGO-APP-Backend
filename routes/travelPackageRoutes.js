@@ -9,11 +9,9 @@ const {
  } = require("../controller/TravelPController");
 
  //addpackage
-
  router.post("/",addPackage);
 
  //getpackage
-
  router.get("/all",getPackage);
 
  
@@ -24,7 +22,6 @@ const {
  //@route delete api/course/:id
  //@desc Delete an course
  router.delete("/:id",removePackage);
-
 
 
  module.exports = router;

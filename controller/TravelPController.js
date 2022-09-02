@@ -24,7 +24,7 @@ const addPackage =(req, res)=>{
         console.log(error);
     });
   };
- 
+
   //getallpackages
 
   const getPackage = async (req, res) => {
@@ -77,13 +77,11 @@ const addPackage =(req, res)=>{
     }
   }
 
-  
+ 
   module.exports = {
     addPackage,
     getPackage,
     updatePackage,
     removePackage,
-
-
     
   }
