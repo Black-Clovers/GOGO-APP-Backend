@@ -46,6 +46,7 @@ app.get("/", (req, res) => {
 });
 
 app.use("/api/package", require("./routes/travelPackageRoutes"));
+app.use("/api/vehicle", require("./routes/VehicleRoutes"));
 
 
 app.listen(PORT, () => {
