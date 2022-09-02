@@ -32,7 +32,7 @@ const addPackage = (req, res) => {
 			res.json(createPackage);
 		})
 		.catch((err) => {
-			console.log(error);
+			console.log(err);
 		});
 };
 
@@ -70,7 +70,7 @@ const updatePackage = async (req, res) => {
 			price,
 		} = req.body;
 
-		const cor = await travelpackage.findByIdAndUpdate(packageId, {
+		await travelpackage.findByIdAndUpdate(packageId, {
 			package_id,
 			package_name,
 			vehicle_type,
