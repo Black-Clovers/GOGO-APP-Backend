@@ -1,16 +1,19 @@
-const mongoose = require("mongoose");
+const express = require("express");
+const router = express.Router();
+const { addPackage, getPackage, updatePackage, removePackage } = require("../controller/TravelPController");
 
-const Packageschema = new mongoose.Schema({
-	package_id: String,
-	package_name: String,
-	vehicle_type: String,
-	package_overview: String,
-	package_include: String,
-	contacts: String,
-	image_url: String,
-	add_info: String,
-	price: String,
-});
+//addpackage
+router.post("/", addPackage);
 
-const TravelPackageModel = mongoose.model("travelpackage", Packageschema);
-module.exports = TravelPackageModel;
+//getpackage
+router.get("/all", getPackage);
+
+//@route PUT api/course/:id
+//@desc Update an course
+router.put("/:id", updatePackage);
+
+//@route delete api/course/:id
+//@desc Delete an course
+router.delete("/:id", removePackage);
+
+module.exports = router;
