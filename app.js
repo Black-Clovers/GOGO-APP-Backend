@@ -1,30 +1,56 @@
-const express = require('express');
-const createError = require('http-errors');
-const morgan = require('morgan');
-require('dotenv').config();
+const express = require("express");
+const dotenv = require("dotenv");
+const logger = require("pino")();
+const mongoose = require("mongoose");
+const cors = require("cors");
+const expressSession = require("express-session");
 
 const app = express();
+dotenv.config();
+
+app.use(
+  cors({
+    origin: "http://localhost:3000",
+    credentials: true,
+  })
+);
+
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use(morgan('dev'));
-
-app.get('/', async (req, res, next) => {
-  res.send({ message: 'Awesome it works 🐻' });
+app.set("trust proxy", 1);
+const sessSettings = expressSession({
+  path: "/",
+  secret: "oursecret",
+  resave: true,
+  saveUninitialized: true,
+  cookie: {
+    sameSite: false,
+    secure: false,
+    maxAge: 360000,
+  },
 });
 
-app.use('/api', require('./routes/api.route'));
+app.use(sessSettings);
+const PORT = process.env.PORT || 8000;
 
-app.use((req, res, next) => {
-  next(createError.NotFound());
+mongoose.connect(process.env.DB_URL, {
+  useNewUrlParser: true,
 });
 
-app.use((err, req, res, next) => {
-  res.status(err.status || 500);
-  res.send({
-    status: err.status || 500,
-    message: err.message,
-  });
+const connection = mongoose.connection;
+connection.once("open", () => {
+  logger.info(" Mongodb connected successfully");
 });
 
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => console.log(`🚀 @ http://localhost:${PORT}`));
+app.get("/", (req, res) => {
+  res.status(200).json({ messsage: "Server is running!" });
+});
+
+app.use("/api/package", require("./routes/travelPackageRoutes"));
+
+app.use("/api/vehicle", require("./routes/VehicleRoutes"));
+
+app.use("/api/vacancy",require("./routes/CareerRoutes"))
+
+app.listen(PORT, () => {
+  logger.info(`Server is running on PORT: ${PORT}`);
+});
