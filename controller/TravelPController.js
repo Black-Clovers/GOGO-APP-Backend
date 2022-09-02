@@ -33,7 +33,6 @@ const addPackage = (req, res) => {
 		})
 		.catch((err) => {
 			console.log(err);
-		});
 };
 
 //getallpackages
@@ -71,6 +70,7 @@ const updatePackage = async (req, res) => {
 		} = req.body;
 
 		await travelpackage.findByIdAndUpdate(packageId, {
+
 			package_id,
 			package_name,
 			vehicle_type,
