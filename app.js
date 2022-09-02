@@ -54,7 +54,3 @@ app.use("/api/vacancy",require("./routes/CareerRoutes"))
 app.listen(PORT, () => {
   logger.info(`Server is running on PORT: ${PORT}`);
 });
-
-
-
-
