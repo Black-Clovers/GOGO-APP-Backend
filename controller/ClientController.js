@@ -83,7 +83,7 @@ const getClientByID = (req, res) => {
 //update a client
 const updateClient = (req, res) => {
 	ClientModal.findByIdAndUpdate(
-		req.body._id,
+		req.body.client_ID,
 		{
 			$set: req.body,
 		},
@@ -108,11 +108,18 @@ const updateClient = (req, res) => {
 
 //delete a client
 const deleteClient = (req, res) => {
+	console.log("deleteClient", req.params.id);
 	ClientModal.findByIdAndDelete(req.params.id, (err, data) => {
 		if (err) {
 			res.status(500).send(err);
 		} else {
-			res.status(200).send(data);
+			res.status(200).json({
+				message: "Client deleted successfully",
+				result: {
+					data: data,
+					response: true,
+				},
+			});
 		}
 	});
 };
