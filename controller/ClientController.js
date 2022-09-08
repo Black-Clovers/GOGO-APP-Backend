@@ -18,22 +18,6 @@ const addClient = (req, res) => {
 		client_Address,
 	} = req.body;
 
-	console.log("addClient", {
-		client_ID,
-		client_FirstName,
-		client_LastName,
-		client_profilePicture,
-		client_UserName,
-		client_Email,
-		client_Mobile,
-		client_NIC,
-		client_Password,
-		client_Gender,
-		client_DOB,
-		client_Status,
-		client_Address,
-	});
-
 	const mongooseRes = new ClientModal({
 		client_ID,
 		client_FirstName,
@@ -49,7 +33,7 @@ const addClient = (req, res) => {
 		client_Status,
 		client_Address,
 	});
-	console.log("mongooseRes", mongooseRes);
+
 	mongooseRes.save().then((result) => {
 		res
 			.status(200)
