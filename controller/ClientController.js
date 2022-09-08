@@ -75,7 +75,10 @@ const getClientByID = (req, res) => {
 		if (err) {
 			res.status(500).send(err);
 		} else {
-			res.status(200).send(data);
+			res.status(200).json({
+				message: "Searched clients details",
+				data: data,
+			});
 		}
 	});
 };
