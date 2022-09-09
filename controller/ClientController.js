@@ -127,10 +127,32 @@ const deleteClient = (req, res) => {
 	});
 };
 
+// get a single client
+const loginOauth = (req, res) => {
+	//check email and password are correct
+	ClientModal.findOne(
+		{
+			client_Email: req.body.client_Email,
+			client_Password: req.body.client_Password,
+		},
+		(err, data) => {
+			if (err) {
+				res.status(500).send(err);
+			} else {
+				res.status(200).json({
+					message: "Searched clients details",
+					data: data,
+				});
+			}
+		}
+	);
+};
+
 module.exports = {
 	addClient,
 	getAllClients,
 	getClientByID,
 	updateClient,
 	deleteClient,
+	loginOauth,
 };
