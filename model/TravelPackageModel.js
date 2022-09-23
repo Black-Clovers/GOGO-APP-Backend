@@ -10,6 +10,8 @@ const Packageschema = new mongoose.Schema({
 	image_url: String,
 	add_info: String,
 	price: String,
+	mpassengers:String,
+	status:String,
 });
 
 const TravelPackageModel = mongoose.model("travelpackage", Packageschema);
