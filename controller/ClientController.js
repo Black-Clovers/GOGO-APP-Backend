@@ -111,7 +111,6 @@ const updateClient = (req, res) => {
 
 //delete a client
 const deleteClient = (req, res) => {
-	console.log("deleteClient", req.params.id);
 	ClientModal.findByIdAndDelete(req.params.id, (err, data) => {
 		if (err) {
 			res.status(500).send(err);
@@ -126,6 +125,7 @@ const deleteClient = (req, res) => {
 		}
 	});
 };
+
 
 // get a single client
 const loginOauth = (req, res) => {

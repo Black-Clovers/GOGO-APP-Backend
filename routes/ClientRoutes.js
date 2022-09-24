@@ -6,7 +6,7 @@ const {
 	deleteClient,
 	getClientByID,
 	getAllClients,
-	loginOauth,
+	loginOauth
 } = require("../controller/ClientController");
 
 router.get("/all", getAllClients);
