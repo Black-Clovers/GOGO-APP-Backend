@@ -11,6 +11,9 @@ const addPackage = (req, res) => {
 		image_url,
 		add_info,
 		price,
+		mpassengers,
+	    status,
+
 	} = req.body;
 
 	const newtravelPackage = new travelpackage({
@@ -23,6 +26,8 @@ const addPackage = (req, res) => {
 		image_url,
 		add_info,
 		price,
+		mpassengers,
+	    status,
 	});
 
 	//create
@@ -50,6 +55,7 @@ const getPackage = async (req, res) => {
 //update
 const updatePackage = async (req, res) => {
 	const packageId = req.params.id;
+	console.log(req.params.id);
 
 	try {
 		const cRs = await travelpackage.findById(packageId);
@@ -68,6 +74,8 @@ const updatePackage = async (req, res) => {
 			image_url,
 			add_info,
 			price,
+			mpassengers,
+	        status,
 		} = req.body;
 
 		await travelpackage.findByIdAndUpdate(packageId, {
@@ -80,11 +88,14 @@ const updatePackage = async (req, res) => {
 			image_url,
 			add_info,
 			price,
+			mpassengers,
+	         status,
 		});
 	} catch (error) {
 		res.status(400).json(error.message);
 	}
 };
+
 
 //delete
 const removePackage = async (req, res) => {
@@ -102,10 +113,21 @@ const removePackage = async (req, res) => {
 		res.status(400).json(error.message);
 	}
 };
+//find one id
+const getsinglepackage = async (req, res) => {
+    try {
+      const id = req.params.id;
+      const pKg = await travelpackage.findById(id);
+      res.status(200).json(pKg);
+    } catch (error) {
+      res.status(400).json(error);
+    }
+  };
 
 module.exports = {
 	addPackage,
 	getPackage,
 	updatePackage,
 	removePackage,
+	getsinglepackage,
 };
