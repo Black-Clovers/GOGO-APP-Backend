@@ -15,7 +15,9 @@ app.use(
 	})
 );
 
-app.use(express.json());
+app.use(express.json({ limit: "50mb" }));
+app.use(express.urlencoded({ limit: "50mb" }));
+
 app.set("trust proxy", 1);
 const sessSettings = expressSession({
 	path: "/",
@@ -52,8 +54,6 @@ app.use("/api/vehicle", require("./routes/VehicleRoutes"));
 app.use("/api/vacancy", require("./routes/CareerRoutes"));
 
 app.use("/api/client", require("./routes/ClientRoutes"));
-
-app.use("/api/vacancy", require("./routes/CareerRoutes"));
 
 app.listen(PORT, () => {
 	logger.info(`Server is running on PORT: ${PORT}`);

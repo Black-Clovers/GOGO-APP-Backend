@@ -13,4 +13,6 @@ const Packageschema = new mongoose.Schema({
 });
 
 const TravelPackageModel = mongoose.model("travelpackage", Packageschema);
+
 module.exports = TravelPackageModel;
+

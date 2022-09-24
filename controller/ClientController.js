@@ -18,22 +18,6 @@ const addClient = (req, res) => {
 		client_Address,
 	} = req.body;
 
-	console.log("addClient", {
-		client_ID,
-		client_FirstName,
-		client_LastName,
-		client_profilePicture,
-		client_UserName,
-		client_Email,
-		client_Mobile,
-		client_NIC,
-		client_Password,
-		client_Gender,
-		client_DOB,
-		client_Status,
-		client_Address,
-	});
-
 	const mongooseRes = new ClientModal({
 		client_ID,
 		client_FirstName,
@@ -49,7 +33,7 @@ const addClient = (req, res) => {
 		client_Status,
 		client_Address,
 	});
-	console.log("mongooseRes", mongooseRes);
+
 	mongooseRes.save().then((result) => {
 		res
 			.status(200)
@@ -91,7 +75,10 @@ const getClientByID = (req, res) => {
 		if (err) {
 			res.status(500).send(err);
 		} else {
-			res.status(200).send(data);
+			res.status(200).json({
+				message: "Searched clients details",
+				data: data,
+			});
 		}
 	});
 };
@@ -99,7 +86,7 @@ const getClientByID = (req, res) => {
 //update a client
 const updateClient = (req, res) => {
 	ClientModal.findByIdAndUpdate(
-		req.body._id,
+		req.body.client_ID,
 		{
 			$set: req.body,
 		},
@@ -128,9 +115,37 @@ const deleteClient = (req, res) => {
 		if (err) {
 			res.status(500).send(err);
 		} else {
-			res.status(200).send(data);
+			res.status(200).json({
+				message: "Client deleted successfully",
+				result: {
+					data: data,
+					response: true,
+				},
+			});
 		}
 	});
+};
+
+
+// get a single client
+const loginOauth = (req, res) => {
+	//check email and password are correct
+	ClientModal.findOne(
+		{
+			client_Email: req.body.client_Email,
+			client_Password: req.body.client_Password,
+		},
+		(err, data) => {
+			if (err) {
+				res.status(500).send(err);
+			} else {
+				res.status(200).json({
+					message: "Searched clients details",
+					data: data,
+				});
+			}
+		}
+	);
 };
 
 module.exports = {
@@ -139,4 +154,5 @@ module.exports = {
 	getClientByID,
 	updateClient,
 	deleteClient,
+	loginOauth,
 };
