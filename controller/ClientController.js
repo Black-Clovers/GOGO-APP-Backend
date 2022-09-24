@@ -53,7 +53,6 @@ const addClient = (req, res) => {
 
 //getAll Client Details
 const getAllClients = (req, res) => {
-	// console.log("getAllClients", req);
 	ClientModal.find((err, data) => {
 		if (err) {
 			res.status(500).json({
