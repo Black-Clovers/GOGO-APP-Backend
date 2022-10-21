@@ -57,6 +57,8 @@ app.use("/api/client", require("./routes/ClientRoutes"));
 
 app.use("/api/trip", require("./routes/RideRoute"));
 
+app.use("/api/booking", require("./routes/BokkingRoutes"));
+
 app.listen(PORT, () => {
 	logger.info(`Server is running on PORT: ${PORT}`);
 });
